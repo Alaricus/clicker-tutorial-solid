@@ -45,7 +45,7 @@ const App: Component = () => {
   return (
     <div class="game">
       <div class="banner">
-        This is an accompanying example to a clicker game tutorial using SolidJS. See
+        This is an accompanying example to a clicker game tutorial using Solid. See
         <a href="https://github.com/Alaricus/clicker-tutorial-solid">GitHub</a>
         for more details.
       </div>
