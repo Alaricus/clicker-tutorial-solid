@@ -1,15 +1,15 @@
 import { Show } from 'solid-js';
 
-export interface IAutoClickerProps extends IAutoClicker {
-  clicks: number;
-  netWorth: number;
-  update: (id: string, action?: boolean) => void;
-};
-
 export interface IAutoClicker {
   id: string;
   cost: number;
   amount: number;
+}
+
+interface IAutoClickerProps extends IAutoClicker {
+  clicks: number;
+  netWorth: number;
+  update: (id: string, action?: boolean) => void;
 }
 
 export const AutoClicker = (props: IAutoClickerProps) => (

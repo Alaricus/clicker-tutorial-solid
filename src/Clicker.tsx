@@ -1,9 +1,9 @@
-interface IClickerProps extends IClicker {
-  update: () => void;
-};
-
 export interface IClicker {
   amount: number;
+}
+
+interface IClickerProps extends IClicker {
+  update: () => void;
 }
 
 export const Clicker = (props: IClickerProps) => (

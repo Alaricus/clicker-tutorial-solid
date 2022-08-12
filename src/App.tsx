@@ -1,18 +1,18 @@
 import type { Component } from 'solid-js';
 import { createSignal, For, onCleanup } from 'solid-js';
-import { createStore } from "solid-js/store";
+import { createStore } from 'solid-js/store';
 
 import { Clicker, IClicker } from './Clicker';
 import { AutoClicker, IAutoClicker } from './AutoClicker';
 
 const initialClickerValue = { amount: 0 };
 const initialAutoClickersValue = [
-  { id: "auto", cost: 10, amount: 0 },
-  { id: "double", cost: 20, amount: 0 },
-  { id: "multi", cost: 100, amount: 0 },
-  { id: "mega", cost: 1000, amount: 0 },
-  { id: "ultra", cost: 10000, amount: 0 },
-  { id: "monster", cost: 100000, amount: 0 },
+  { id: 'auto', cost: 10, amount: 0 },
+  { id: 'double', cost: 20, amount: 0 },
+  { id: 'multi', cost: 100, amount: 0 },
+  { id: 'mega', cost: 1000, amount: 0 },
+  { id: 'ultra', cost: 10000, amount: 0 },
+  { id: 'monster', cost: 100000, amount: 0 },
 ]
 
 const App: Component = () => {
@@ -25,11 +25,11 @@ const App: Component = () => {
     setNetWorth({ amount: netWorth().amount + 1 });
   };
 
-  const updateAutoClicker = (id: string, increment: boolean = true) => {
+  const updateAutoClicker = (id: string, increment = true) => {
     const direction = increment ? 1 : -1;
     const autoClicker = autoClickers.find(autoClicker => autoClicker.id === id);
     autoClicker && setClicker({ amount: clicker().amount - autoClicker.cost * direction});
-    setAutoClickers(autoClicker => autoClicker.id === id, "amount", amount => amount + 1 * direction);
+    setAutoClickers(autoClicker => autoClicker.id === id, 'amount', amount => amount + 1 * direction);
   };
 
   const updateTotal = () => {
@@ -49,7 +49,7 @@ const App: Component = () => {
         <a href="https://github.com/Alaricus/clicker-tutorial-solid">GitHub</a>
         for more details.
       </div>
-      <Clicker {...clicker()} update={updateClicker} />
+      <Clicker amount={clicker().amount} update={updateClicker} />
       <For each={autoClickers}>
         {
           autoClicker => (
