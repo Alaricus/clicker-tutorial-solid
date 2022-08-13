@@ -81,10 +81,10 @@ This one is fairly self explanatory. It takes two props:
   1. `amount` — we'll pass the `clicks` to it so that it shows the currently available clicks
   2. `update` — we'll pass `updateClicker()` to it so that it increments them when we click the button
 
-`<AutoClicker />` allows to buy and sell autoclickers of a given level.
+`<AutoClicker />` will allow us to buy and sell autoclickers of a given tier.
 
 This component will have the following logic:
-  1. It will become visible once the total clicks in the game equals to or surpases its cost.
+  1. It will become visible once the amount of total clicks in the game equals to or surpases its cost.
   2. It will enable the buy button if the amount of available clicks equals to or surpases its cost.
   3. It will display the sell button if we have at least one autoclicket of this tier.
 
@@ -92,9 +92,9 @@ To achieve that it will will require the following props:
   1. `clicks` — we'll pass the `clicks` here
   2. `newWorth` — we'll pass the `netWorth` here
   3. `update` — we'll pass `updateAutoClicker()` here
-  4. `id` — we'll pass the given tier's `id` here
-  5. `cost` — we'll pass the given tier's `cost` here
-  6. `amount` — we'll pass the given tier's `amount` here
+  4. `id` — we'll pass the given tier's `id` property here
+  5. `cost` — we'll pass the given tier's `cost` property here
+  6. `amount` — we'll pass the given tier's `amount` property here
 
 Now, using these props we can wire up the logic we discussed above and ... well, that's it. You've got a working game.
 
