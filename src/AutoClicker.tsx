@@ -1,3 +1,4 @@
+import type { Component } from 'solid-js';
 import { Show } from 'solid-js';
 
 export interface IAutoClicker {
@@ -12,7 +13,7 @@ interface IAutoClickerProps extends IAutoClicker {
   update: (id: string, action?: boolean) => void;
 }
 
-const AutoClicker = (props: IAutoClickerProps) => (
+const AutoClicker: Component<IAutoClickerProps> = props => (
   <Show
     when={props.netWorth >= props.cost}
     fallback={null}
