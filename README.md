@@ -6,8 +6,6 @@ Let’s say you get inspired by Cookie Clicker and decide to make your own game.
 
 In order to benefit the most from the code we will be looking over later in the article, it would be helpful if you were familiar with JavaScript at an intermediate level. Typescript knowledge would benefit you as well, but we won't be using any advanced or complicated bits, so it shouldn't prove much of a hinderance if you haven't dealt with it before.
 
-While I will not go into great detail on everything, don’t worry, I will try to include as many relevant links as possible so that those who are new to this can have some reference material. Should you happen to come across a section that is unclear, there will be a link to bring you up to speed. If not, please let me know.
-
 In terms of Solid, we'll be making use of the following list of features: [signals](https://www.solidjs.com/tutorial/introduction_signals), [stores](https://www.solidjs.com/tutorial/stores_createstore), [onCleanup](https://www.solidjs.com/tutorial/lifecycles_oncleanup), [For](https://www.solidjs.com/tutorial/flow_for), and [Show](https://www.solidjs.com/tutorial/flow_show). Follow these links to gain brief familiarity. That's all you'll need.
 
 ## The Setup
@@ -77,13 +75,13 @@ While this was the hardest part of the React tutorial, here we run `setInterval`
 ### The Components
 Now let's create the two components we are going to need.
 
-`Clicker` — the component that will display the total number of currently available "clicks" and the button for manually incrementing this counter.
+`<Clicker />` will display the total number of currently available "clicks" and the button for manually incrementing this counter.
 
 This one is fairly self explanatory. It takes two props:
   1. `amount` — we'll pass the `clicks` to it so that it shows the currently available clicks
   2. `update` — we'll pass `updateClicker()` to it so that it increments them when we click the button
 
-`AutoClicker` — the component which allows to buy and sell autoclickers of a given level.
+`<AutoClicker />` allows to buy and sell autoclickers of a given level.
 
 This component will have the following logic:
   1. It will become visible once the total clicks in the game equals to or surpases its cost.
