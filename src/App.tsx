@@ -6,7 +6,7 @@ import Clicker from './Clicker';
 import AutoClicker, { IAutoClicker } from './AutoClicker';
 
 const initialClicksValue = 0;
-const initialAutoClickersValue = [
+const initialAutoClickersValue: IAutoClicker[] = [
   { id: 'auto', cost: 10, amount: 0 },
   { id: 'double', cost: 20, amount: 0 },
   { id: 'multi', cost: 100, amount: 0 },
@@ -20,25 +20,25 @@ const App: Component = () => {
   const [netWorth, setNetWorth] = createSignal<number>(initialClicksValue);
   const [autoClickers, setAutoClickers] = createStore<IAutoClicker[]>(initialAutoClickersValue);
 
-  const updateClicker = () => {
+  const updateClicker = (): void => {
     setClicks(clicks() + 1);
     setNetWorth(netWorth() + 1);
   };
 
-  const updateAutoClicker = (id: string, increment = true) => {
+  const updateAutoClicker = (id: string, increment = true): void => {
     const direction = increment ? 1 : -1;
-    const currentAutoClicker = autoClickers.find(autoClicker => autoClicker.id === id);
+    const currentAutoClicker: IAutoClicker | undefined = autoClickers.find(autoClicker => autoClicker.id === id);
     currentAutoClicker && setClicks(clicks() - currentAutoClicker.cost * direction);
     setAutoClickers(autoClicker => autoClicker.id === id, 'amount', amount => amount + 1 * direction);
   };
 
-  const updateTotal = () => {
-    const newTotal = autoClickers.reduce((acc, cur) => acc + cur.amount * (cur.cost * 0.1), 0);
+  const updateTotal = (): void => {
+    const newTotal: number = autoClickers.reduce((acc, cur) => acc + cur.amount * (cur.cost * 0.1), 0);
     setClicks(newTotal + clicks());
     setNetWorth(newTotal + netWorth());
   };
 
-  const interval = setInterval(updateTotal, 1000);
+  const interval: number = setInterval(updateTotal, 1000);
 
   onCleanup(() => clearInterval(interval));
 
