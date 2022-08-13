@@ -2,10 +2,10 @@ import type { Component } from 'solid-js';
 import { createSignal, For, onCleanup } from 'solid-js';
 import { createStore } from 'solid-js/store';
 
-import { Clicker, IClicker } from './Clicker';
-import { AutoClicker, IAutoClicker } from './AutoClicker';
+import Clicker from './Clicker';
+import AutoClicker, { IAutoClicker } from './AutoClicker';
 
-const initialClickerValue = { amount: 0 };
+const initialClicksValue = 0;
 const initialAutoClickersValue = [
   { id: 'auto', cost: 10, amount: 0 },
   { id: 'double', cost: 20, amount: 0 },
@@ -13,29 +13,29 @@ const initialAutoClickersValue = [
   { id: 'mega', cost: 1000, amount: 0 },
   { id: 'ultra', cost: 10000, amount: 0 },
   { id: 'monster', cost: 100000, amount: 0 },
-]
+];
 
 const App: Component = () => {
-  const [clicker, setClicker] = createSignal<IClicker>(initialClickerValue);
-  const [netWorth, setNetWorth] = createSignal<IClicker>(initialClickerValue);
+  const [clicks, setClicks] = createSignal<number>(initialClicksValue);
+  const [netWorth, setNetWorth] = createSignal<number>(initialClicksValue);
   const [autoClickers, setAutoClickers] = createStore<IAutoClicker[]>(initialAutoClickersValue);
 
   const updateClicker = () => {
-    setClicker({ amount: clicker().amount + 1 });
-    setNetWorth({ amount: netWorth().amount + 1 });
+    setClicks(clicks() + 1);
+    setNetWorth(netWorth() + 1);
   };
 
   const updateAutoClicker = (id: string, increment = true) => {
     const direction = increment ? 1 : -1;
-    const autoClicker = autoClickers.find(autoClicker => autoClicker.id === id);
-    autoClicker && setClicker({ amount: clicker().amount - autoClicker.cost * direction});
+    const currentAutoClicker = autoClickers.find(autoClicker => autoClicker.id === id);
+    currentAutoClicker && setClicks(clicks() - currentAutoClicker.cost * direction);
     setAutoClickers(autoClicker => autoClicker.id === id, 'amount', amount => amount + 1 * direction);
   };
 
   const updateTotal = () => {
     const newTotal = autoClickers.reduce((acc, cur) => acc + cur.amount * (cur.cost * 0.1), 0);
-    setClicker({ amount: newTotal + clicker().amount });
-    setNetWorth({ amount: newTotal + netWorth().amount });
+    setClicks(newTotal + clicks());
+    setNetWorth(newTotal + netWorth());
   };
 
   const interval = setInterval(updateTotal, 1000);
@@ -49,15 +49,15 @@ const App: Component = () => {
         <a href="https://github.com/Alaricus/clicker-tutorial-solid">GitHub</a>
         for more details.
       </div>
-      <Clicker amount={clicker().amount} update={updateClicker} />
+      <Clicker amount={clicks()} update={updateClicker} />
       <For each={autoClickers}>
         {
           autoClicker => (
             <AutoClicker
               {...autoClicker}
               update={updateAutoClicker}
-              clicks={clicker().amount}
-              netWorth={netWorth().amount}
+              clicks={clicks()}
+              netWorth={netWorth()}
             />
           )
         }

@@ -12,7 +12,7 @@ interface IAutoClickerProps extends IAutoClicker {
   update: (id: string, action?: boolean) => void;
 }
 
-export const AutoClicker = (props: IAutoClickerProps) => (
+const AutoClicker = (props: IAutoClickerProps) => (
   <Show
     when={props.netWorth >= props.cost}
     fallback={null}
@@ -29,15 +29,20 @@ export const AutoClicker = (props: IAutoClickerProps) => (
       >
         {`buy ${props.id}clicker`}
       </button>
-      {
-        props.amount > 0 && <button
+      <Show
+        when={props.amount > 0}
+        fallback={null}
+      >
+        <button
           class="sell"
           type="button"
           onClick={() => props.update(props.id, false)}
         >
-          -
+          sell
         </button>
-      }
+      </Show>
     </div>
   </Show>
 );
+
+export default AutoClicker;

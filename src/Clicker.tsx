@@ -1,12 +1,9 @@
-export interface IClicker {
+interface IClickerProps {
   amount: number;
-}
-
-interface IClickerProps extends IClicker {
   update: () => void;
 }
 
-export const Clicker = (props: IClickerProps) => (
+const Clicker = (props: IClickerProps) => (
   <div class="clicker">
     <h1>{Intl.NumberFormat().format(props.amount)}</h1>
     <button
@@ -18,3 +15,5 @@ export const Clicker = (props: IClickerProps) => (
     </button>
   </div>
 );
+
+export default Clicker;
