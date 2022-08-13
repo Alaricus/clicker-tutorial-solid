@@ -11,7 +11,7 @@ In terms of Solid, we'll be making use of the following list of features: [signa
 ## The Setup
 Clone this repo.
 
-If you don't want to clone and would rather trace each step from scratch, you can get up and running by creating your Solid project via the follwing command in your terminal:
+If you don't want to clone and would rather trace each step from scratch, you can get up and running by creating your Solid project via the following command in your terminal:
 
 ```
 npx degit solidjs/templates/ts clicker-tutorial-solid
